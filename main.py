@@ -55,16 +55,16 @@ st.write('''Credit scoring is a statistical analysis performed by lenders and fi
              Credit scoring is used by lenders to help decide whether to extend or deny credit. A credit score can impact your ability to qualify for financial products like mortgages, auto loans, credit cards, and private loans.''')
 
 
-conn=st.connection("gsheets",type=GSheetsConnection)
+#conn=st.connection("gsheets",type=GSheetsConnection)
 
-st.write(st.secrets['connections'])
+#st.write(st.secrets['connections'])
 
-existing_data=conn.read(worksheet="credit data",ttl=0)
+#existing_data=conn.read(worksheet="credit data",ttl=0)
 
-ex_data=existing_data.dropna(how='all')
+#ex_data=existing_data.dropna(how='all')
 
-ex_data1=ex_data.dropna(how='all')
-st.session_state['existing_data']=ex_data1
+#ex_data1=ex_data.dropna(how='all')
+#st.session_state['existing_data']=ex_data1
 
 
 
