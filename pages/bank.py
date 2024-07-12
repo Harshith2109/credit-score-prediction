@@ -57,7 +57,7 @@ st.write(default_value)
 if default_value=='internal file':
     
     #ex_data=ex_data1.dropna(how="all")
-    data=pd.read_csv("credit_scoring.csv")
+    data=pd.read_csv("credit data.csv")
 
     
     if True:
