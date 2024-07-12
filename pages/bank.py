@@ -13,7 +13,7 @@ from sklearn.cluster import KMeans
 
 
 
-x=joblib.load(".\models\\credit_model")
+x=joblib.load("./models/credit_model.joblib")
 
 st.title('credit segmentation')
 with st.sidebar:
@@ -43,7 +43,7 @@ st.write('''Credit scoring is a statistical analysis performed by lenders and fi
 
 
 
-ex_data1=st.session_state['existing_data']
+#ex_data1=st.session_state['existing_data']
 
 
 
@@ -56,8 +56,8 @@ st.write(default_value)
 
 if default_value=='internal file':
     
-    ex_data=ex_data1.dropna(how="all")
-    data=ex_data
+    #ex_data=ex_data1.dropna(how="all")
+    data=pd.read_csv("credit_scoring.csv")
 
     
     if True:
