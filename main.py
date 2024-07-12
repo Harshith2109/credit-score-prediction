@@ -55,16 +55,7 @@ st.write('''Credit scoring is a statistical analysis performed by lenders and fi
              Credit scoring is used by lenders to help decide whether to extend or deny credit. A credit score can impact your ability to qualify for financial products like mortgages, auto loans, credit cards, and private loans.''')
 
 
-#conn=st.connection("gsheets",type=GSheetsConnection)
 
-#st.write(st.secrets['connections'])
-
-#existing_data=conn.read(worksheet="credit data",ttl=0)
-
-#ex_data=existing_data.dropna(how='all')
-
-#ex_data1=ex_data.dropna(how='all')
-#st.session_state['existing_data']=ex_data1
 
 
 
@@ -76,7 +67,7 @@ x=joblib.load("./models/credit_model.joblib")
 
 
 st.subheader("Calculate Score",anchor="sh3")
-default_value=st.radio("select options",options=["nothing","check score","Ramesh","Suresh"],horizontal=True)
+default_value=st.radio("select options",options=["nothing","check score","Ramesh","Suresh"])
 st.markdown(
     """
 
@@ -371,16 +362,10 @@ elif default_value=="check score":
  
 
 
-            #updated_data=pd.concat([ex_data1,output],ignore_index=True)
-
-            #st.write(updated_data)
-
+            
             gauge_chart (y);
 
-            #st.session_state['existing_data']=updated_data
-
-
-            #conn.update(worksheet="credit data",data=updated_data)
+            
 
 
 
@@ -388,7 +373,7 @@ elif default_value=="check score":
 st.subheader("Created By:",anchor='au')
 
 
-st.html("<h5>Harshith HS (21CS040)</h5><h5>Jinuth Gowda BC(21CS040)</h5>")
+st.html("<h5>Harshith HS (21CS034)</h5><h5>Jinuth Gowda BC(21CS040)</h5>")
 
     
 
