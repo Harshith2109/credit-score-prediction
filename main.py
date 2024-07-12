@@ -16,7 +16,7 @@ import streamlit as st
 # from imblearn.over_sampling import SMOTE
 # from xgboost import XGBRegressor
 import warnings
-from streamlit_gsheets import GSheetsConnection
+#from streamlit_gsheets import GSheetsConnection
 import joblib 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
@@ -371,16 +371,16 @@ elif default_value=="check score":
  
 
 
-            updated_data=pd.concat([ex_data1,output],ignore_index=True)
+            #updated_data=pd.concat([ex_data1,output],ignore_index=True)
 
-            st.write(updated_data)
+            #st.write(updated_data)
 
             gauge_chart (y);
 
-            st.session_state['existing_data']=updated_data
+            #st.session_state['existing_data']=updated_data
 
 
-            conn.update(worksheet="credit data",data=updated_data)
+            #conn.update(worksheet="credit data",data=updated_data)
 
 
 
