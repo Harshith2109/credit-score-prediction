@@ -45,7 +45,7 @@ st.write('''This project leverages machine learning techniques to predict credit
 
 
 
-x=joblib.load("./models/credit_model")
+x=joblib.load("./models/credit_model.joblib")
 
 
 

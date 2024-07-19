@@ -8,7 +8,7 @@ from sklearn.cluster import KMeans
 
 
 
-x=joblib.load("./models/credit_model")
+x=joblib.load("./models/credit_model.joblib")
 
 st.title('credit segmentation')
 with st.sidebar:
