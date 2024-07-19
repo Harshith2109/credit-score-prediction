@@ -1,22 +1,6 @@
 import pandas as pd
 import streamlit as st
-#import seaborn as sns
-#import matplotlib.pyplot as plt
-#import numpy as np
-#import pandas as pd 
-#import plotly.express as px
-#import plotly.graph_objects as go
-#import matplotlib.pyplot as plt
-#import seaborn as sns
-#from sklearn.preprocessing import OrdinalEncoder, LabelEncoder
-# from sklearn.feature_selection import mutual_info_classif
-# from sklearn.model_selection import train_test_split
-# from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
-# from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, mean_squared_error
-# from imblearn.over_sampling import SMOTE
-# from xgboost import XGBRegressor
 import warnings
-#from streamlit_gsheets import GSheetsConnection
 import joblib 
 warnings.filterwarnings("ignore", category=FutureWarning)
 
@@ -31,7 +15,7 @@ with st.sidebar:
 
     st.markdown("[How it Works?](#sh1)",unsafe_allow_html=True)
 
-    st.markdown("[How FICO Works?](#sh2)",unsafe_allow_html=True)
+    st.markdown("[How Our model  Works?](#sh2)",unsafe_allow_html=True)
 
     st.markdown("[Calculate Score](#sh3)",unsafe_allow_html=True)
     st.markdown("[Authors](#au)",unsafe_allow_html=True)
@@ -44,30 +28,30 @@ st.write('''Credit scoring is a statistical analysis performed by lenders and fi
 
 st.subheader("How it Works?",anchor="sh1")
 
-st.write('''Credit scoring is a statistical analysis performed by lenders and financial institutions to determine the creditworthiness of a person or a small, owner-operated business.
-             Credit scoring is used by lenders to help decide whether to extend or deny credit. A credit score can impact your ability to qualify for financial products like mortgages, auto loans, credit cards, and private loans.''')
+st.write('''Credit scores are calculated using factors like payment history (35%), credit utilization (30%), length of credit history (15%), credit mix (10%), and new credit (10%). These elements determine your score, which ranges from 300 to 850, indicating your creditworthiness to lenders. Maintaining timely payments, low credit card balances relative to limits, and a diverse credit history can positively impact your score, while recent credit inquiries and high debt levels can lower it. Understanding and managing these factors can help you improve your credit score over time, making it easier to access loans and financial products with favorable terms.''')
 
 
 
-st.subheader("How FICO Works?",anchor="sh2")
+st.subheader("How  Our model Works?",anchor="sh2")
 
-st.write('''Credit scoring is a statistical analysis performed by lenders and financial institutions to determine the creditworthiness of a person or a small, owner-operated business.
-             Credit scoring is used by lenders to help decide whether to extend or deny credit. A credit score can impact your ability to qualify for financial products like mortgages, auto loans, credit cards, and private loans.''')
-
-
+st.write('''This project leverages machine learning techniques to predict credit scores effectively. It uses Random Forest for accurate score predictions by analyzing historical data such as payment history and credit utilization. Additionally, K-means clustering segments individuals based on their predicted scores, enabling tailored financial strategies and risk assessments. This approach enhances decision-making for financial institutions by providing insights into customer creditworthiness and optimizing customer relationship management.''')
 
 
 
 
 
 
-x=joblib.load("./models/credit_model.joblib")
+
+
+
+
+x=joblib.load("./models/credit_model")
 
 
 
 
 st.subheader("Calculate Score",anchor="sh3")
-default_value=st.radio("select options",options=["nothing","check score","Ramesh","Suresh"])
+default_value=st.radio("select options",options=["nothing","check score","Ramesh","Suresh"],horizontal=True)
 st.markdown(
     """
 
@@ -134,7 +118,7 @@ def gauge_chart (value:int):
                 ],
             }))
     
-    #fig.update_layout(paper_bgcolor = "lavender", font = {'color': "darkblue", 'family': "Arial"})
+    
    
     st.plotly_chart(fig)
 
@@ -149,7 +133,7 @@ def gauge_chart (value:int):
 
 
 
-#st.write(default_value)
+
 
 
 
@@ -262,8 +246,12 @@ elif default_value=="check score":
         Num_Bank_Accounts=st.slider('Number of Bank Accounts',min_value=0,max_value=20)
         Num_Credit_Card=st.slider('Number of Credit Card',min_value=0,max_value=20)
         Num_of_Loan=st.slider('Num of Loan ',min_value=0,max_value=15)
-        Credit_Mix_Encoded=st.slider('Credit Status ', min_value=0, max_value=2)
+        Credit_Mix_Encoded=2
         Total_Num_Accounts=st.slider('Total Num Accounts',min_value=1,max_value=20)
+        Changed_Credit_Limit=5
+        Num_Credit_Inquiries=3
+        
+
 
 
 
@@ -274,34 +262,28 @@ elif default_value=="check score":
             Total_EMI_per_month=(col1.number_input('Total EMI per Month', min_value=0.00, max_value=300000.00))/80
             Credit_History_Age_Months=col1.number_input('Credit History Age Months',min_value=0)
             ex('''
-            The chart above shows some numbers I picked for you.
-            I rolled actual dice for these, so they're *guaranteed* to
-            be random.
+            The number of credit history months-The length of time that accounts have been open and actively used for credit purposes.
             ''');
             
 
         with col2:
             Interest_Rate=col2.number_input('Interest Rate',min_value=0.00,max_value=30.00)
             Delay_from_due_date=col2.number_input('Delay from Due Date',min_value=0,max_value=50)
-            Num_of_Delayed_Payment=col2.number_input('Num of Delayed Payment',min_value=0,max_value=50)
+            #Num_of_Delayed_Payment=col2.number_input('Num of Delayed Payment',min_value=0,max_value=50)
             ex('''
-            The chart above shows some numbers I picked for you.
-            I rolled actual dice for these, so they're *guaranteed* to
-            be random.
+            The delay from the due date- The number of days beyond the specified due date that a payment or project submission is made.
             ''');
             
 
 
 
         with col3:
-            
-            Changed_Credit_Limit=col3.number_input('Changed Credit Limit', min_value=0.00, max_value=30.00)
-            Num_Credit_Inquiries=col3.number_input('Num Credit Inquiries', min_value=0, max_value=30)
+            Num_of_Delayed_Payment=col3.number_input('Num of Delayed Payment',min_value=0,max_value=50)
+            #Changed_Credit_Limit=col3.number_input('Changed Credit Limit', min_value=0.00, max_value=30.00)
+            #Num_Credit_Inquiries=col3.number_input('Num Credit Inquiries', min_value=0, max_value=30)
             Outstanding_Debt=(col3.number_input('Outstanding Debt', min_value=0.00, max_value=300000.00))/80
             ex('''
-            The chart above shows some numbers I picked for you.
-            I rolled actual dice for these, so they're *guaranteed* to
-            be random.
+            Outstanding debt-The total amount of money that a person or entity owes to creditors or lenders, which has not yet been fully repaid.
             ''');
 
         
@@ -362,10 +344,16 @@ elif default_value=="check score":
  
 
 
-            
+            #updated_data=pd.concat([ex_data1,output],ignore_index=True)
+
+            #st.write(updated_data)
+
             gauge_chart (y);
 
-            
+            #st.session_state['existing_data']=updated_data
+
+
+            #conn.update(worksheet="credit data",data=updated_data)
 
 
 

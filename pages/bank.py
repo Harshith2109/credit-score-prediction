@@ -1,19 +1,14 @@
 
 import pandas as pd
 import streamlit as st
-#import seaborn as sns
-#import matplotlib.pyplot as plt
 import plotly.express as px
-#import plotly.graph_objects as go
-#import plotly.express as px
-#import plotly.io as pio
 import joblib 
 from sklearn.cluster import KMeans
-#pio.templates.default = "plotly_white"
 
 
 
-x=joblib.load("./models/credit_model.joblib")
+
+x=joblib.load("./models/credit_model")
 
 st.title('credit segmentation')
 with st.sidebar:
@@ -21,7 +16,9 @@ with st.sidebar:
 
     st.markdown("[How Credit Segmentation Works?](#hh1)",unsafe_allow_html=True)
 
-    st.markdown("[Why Segmentation is Necessary?](#shh1)",unsafe_allow_html=True)
+    st.markdown("[what is kmeans?](#shh1)",unsafe_allow_html=True)
+
+    st.markdown("[what is random forest](#shh3)",unsafe_allow_html=True)
 
     st.markdown("[Calculate Score](#shh2)",unsafe_allow_html=True)
     
@@ -33,13 +30,14 @@ with st.sidebar:
 
 st.header('How Credit Segmentation Works?',anchor='hh1')
 
-st.write('''Credit scoring is a statistical analysis performed by lenders and financial institutions to determine the creditworthiness of a person or a small, owner-operated business.
-             Credit scoring is used by lenders to help decide whether to extend or deny credit. A credit score can impact your ability to qualify for financial products like mortgages, auto loans, credit cards, and private loans.''')
+st.write('''Segmentation in the context of data analysis or marketing involves dividing a heterogeneous population into smaller, more homogeneous groups based on shared characteristics or behaviors. This process aims to understand different segments' needs and preferences more effectively, enabling targeted strategies or interventions tailored to each group's specific attributes.''')
 
 
-st.subheader("Why Segmentation is Necessary?",anchor='shh1')
-st.write('''Credit scoring is a statistical analysis performed by lenders and financial institutions to determine the creditworthiness of a person or a small, owner-operated business.
-             Credit scoring is used by lenders to help decide whether to extend or deny credit. A credit score can impact your ability to qualify for financial products like mortgages, auto loans, credit cards, and private loans.''')
+st.subheader("what is kmeans?",anchor='shh1')
+st.write('''K-means segmentation partitions data into k clusters based on similarities in attributes like credit scores. It begins by randomly initializing  k  centroids, assigning each data point to the nearest centroid, then refining centroids based on mean values of assigned points. This iterative process minimizes intra-cluster variance until centroids stabilize. The outcome assigns each individual to a cluster representing similar creditworthiness, aiding in targeted financial strategies and risk assessment.''')
+
+st.subheader("what is random forest?",anchor='shh3')
+st.write('''Random Forest Regression works by training multiple decision trees on different random subsets of the data and averaging their predictions. Each tree is constructed by selecting random subsets of features at each split, reducing correlation between individual trees and improving generalization. During prediction, the ensemble of trees collectively predicts the output by averaging or taking the majority vote. This method is effective in handling complex relationships in data, reducing overfitting compared to individual decision trees, and providing robust predictions.''')
 
 
 
@@ -55,7 +53,7 @@ st.write(default_value)
 
 if default_value=='internal file':
     
-    
+    #ex_data=ex_data1.dropna(how="all")
     data=pd.read_csv("credit data.csv")
 
     
